@@ -3,7 +3,7 @@ import PlaylistHeader from '../PlaylistHeader';
 import PlaylistItems from '../containers/PlaylistItems';
 import NightMode from '../Nightmode';
 
-const WbnPlayer = props => {
+const Playlist = props => {
   return (
     <>
       <NightMode />
@@ -13,4 +13,4 @@ const WbnPlayer = props => {
   );
 };
 
-export default WbnPlayer;
+export default Playlist;
