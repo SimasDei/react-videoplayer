@@ -1,7 +1,7 @@
 import React from 'react';
-import WbnPlayer from './WbnPlayer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import WbnPlayer from './WbnPlayer';
 import GlobalStyle from '../styles/GlobalStyle';
 
 const App = () => (
