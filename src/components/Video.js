@@ -16,6 +16,7 @@ const Video = ({ active, autoplay, endCallback, progressCallback }) => {
           url={active.video}
           onEnded={endCallback}
           onProgress={progressCallback}
+          controls={true}
         />
       </StyledVideoWrapper>
     </StyledVideo>

@@ -49,13 +49,37 @@ const WbnPlayer = ({ match, history, location }) => {
       history.push({
         pathname: `/${state.activeVideo.id}`,
         autoplay: false,
-      })
+      });
     }
   }, [history, location.autoplay, match.params.activeVideo, state.activeVideo.id, state.videos]);
 
-  const nightModeCallback = () => {};
-  const endCallback = () => {};
-  const progressCallback = () => {};
+  const nightModeCallback = () => {
+    setState(prevState => ({
+      ...prevState,
+      nightMode: !prevState.nightMode,
+    }));
+  };
+
+  const endCallback = () => {
+    const videoId = match.params.activeVideo;
+    const currentVideoIndex = state.videos.findIndex(video => video.id === videoId);
+    const nextVideo = currentVideoIndex === state.videos.length - 1 ? 0 : currentVideoIndex + 1;
+
+    history.push({ pathname: `/${state.videos[nextVideo].id}`, autoplay: false });
+  };
+
+  const progressCallback = e => {
+    if (e.playedSeconds > 10 && e.playedSeconds < 11) {
+      const videos = [...state.videos];
+      const playedVideo = videos.find(video => video.id === state.activeVideo.id);
+      playedVideo.played = true;
+
+      setState(prevState => ({
+        ...prevState,
+        videos,
+      }));
+    }
+  };
 
   return (
     <ThemeProvider theme={state.nightMode ? theme : themeLight}>
